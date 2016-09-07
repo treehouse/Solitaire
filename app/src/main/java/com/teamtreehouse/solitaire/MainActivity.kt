@@ -1,5 +1,6 @@
 package com.teamtreehouse.solitaire
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,10 @@ fun View.getResIdForCard(card: Card): Int {
     val resourceName = "card${card.suit}${cardsMap[card.value]}".toLowerCase()
     return context.resources.getIdentifier(resourceName, "drawable", context.packageName)
 }
+val Context.cardWidth: Int
+        get() = (displayMetrics.widthPixels - dip(8)) / 7
+val Context.cardHeight: Int
+        get() = cardWidth * 190 / 140
 
 class MainActivity : AppCompatActivity(), GameView {
     var deckView: DeckView? = null
@@ -22,9 +27,6 @@ class MainActivity : AppCompatActivity(), GameView {
 
         GamePresenter.setGameView(this)
         GameModel.resetGame()
-
-        val cardWidth = (displayMetrics.widthPixels - dip(8)) / 7
-        val cardHeight = cardWidth * 190 / 140
 
         verticalLayout {
             leftPadding = dip(4)
