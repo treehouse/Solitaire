@@ -2,10 +2,7 @@ package com.teamtreehouse.solitaire
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import org.jetbrains.anko.button
-import org.jetbrains.anko.onClick
-import org.jetbrains.anko.relativeLayout
-import org.jetbrains.anko.textView
+import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         var counter = 0
         relativeLayout {
             val counterTextView = textView {
+                id = 11
                 text = "0"
                 textSize = 24f
             }
@@ -23,6 +21,8 @@ class MainActivity : AppCompatActivity() {
                     counter++
                     counterTextView.text = counter.toString()
                 }
+            }.lparams {
+                below(counterTextView)
             }
         }
     }
